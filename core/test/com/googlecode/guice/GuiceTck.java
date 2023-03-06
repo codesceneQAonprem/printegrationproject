@@ -15,6 +15,7 @@
  */
 
 package com.googlecode.guice;
+package com.googlecode.guice;
 
 import com.google.inject.AbstractModule;
 import com.google.inject.Guice;
@@ -34,8 +35,242 @@ import org.atinject.tck.auto.Tire;
 import org.atinject.tck.auto.V8Engine;
 import org.atinject.tck.auto.accessories.Cupholder;
 import org.atinject.tck.auto.accessories.SpareTire;
-
 public class GuiceTck extends TestCase {
+
+  public static Test suite() {
+    return Tck.testsFor(
+        Guice.createInjector(
+                new AbstractModule() {
+                  @Override
+                  protected void configure() {
+                    bind(Car.class).to(Convertible.class);
+                    bind(Seat.class).annotatedWith(Drivers.class).to(DriversSeat.class);
+                    bind(Engine.class).to(V8Engine.class);
+                    bind(Cupholder.class);
+                    bind(Tire.class);
+                    bind(FuelTank.class);
+                    requestStaticInjection(Convertible.class, SpareTire.class);
+                  }
+
+                  @Provides
+                  @Named("spare")
+                  Tire provideSpareTire(SpareTire spare) {
+                    return spare;
+                  }
+                })
+            .getInstance(Car.class),
+        true,
+        true);
+  }public class GuiceTck extends TestCase {
+
+  public static Test suite() {
+    return Tck.testsFor(
+        Guice.createInjector(
+                new AbstractModule() {
+                  @Override
+                  protected void configure() {
+                    bind(Car.class).to(Convertible.class);
+                    bind(Seat.class).annotatedWith(Drivers.class).to(DriversSeat.class);
+                    bind(Engine.class).to(V8Engine.class);
+                    bind(Cupholder.class);
+                    bind(Tire.class);
+                    bind(FuelTank.class);
+                    requestStaticInjection(Convertible.class, SpareTire.class);
+                  }
+
+                  @Provides
+                  @Named("spare")
+                  Tire provideSpareTire(SpareTire spare) {
+                    return spare;
+                  }
+                })
+            .getInstance(Car.class),
+        true,
+        true);
+  }public class GuiceTck extends TestCase {
+
+  public static Test suite() {
+    return Tck.testsFor(
+        Guice.createInjector(
+                new AbstractModule() {
+                  @Override
+                  protected void configure() {
+                    bind(Car.class).to(Convertible.class);
+                    bind(Seat.class).annotatedWith(Drivers.class).to(DriversSeat.class);
+                    bind(Engine.class).to(V8Engine.class);
+                    bind(Cupholder.class);
+                    bind(Tire.class);
+                    bind(FuelTank.class);
+                    requestStaticInjection(Convertible.class, SpareTire.class);
+                  }
+
+                  @Provides
+                  @Named("spare")
+                  Tire provideSpareTire(SpareTire spare) {
+                    return spare;
+                  }
+                })
+            .getInstance(Car.class),
+        true,
+        true);
+  }public class GuiceTck extends TestCase {
+
+  public static Test suite() {
+    return Tck.testsFor(
+        Guice.createInjector(
+                new AbstractModule() {
+                  @Override
+                  protected void configure() {
+                    bind(Car.class).to(Convertible.class);
+                    bind(Seat.class).annotatedWith(Drivers.class).to(DriversSeat.class);
+                    bind(Engine.class).to(V8Engine.class);
+                    bind(Cupholder.class);
+                    bind(Tire.class);
+                    bind(FuelTank.class);
+                    requestStaticInjection(Convertible.class, SpareTire.class);
+                  }
+
+                  @Provides
+                  @Named("spare")
+                  Tire provideSpareTire(SpareTire spare) {
+                    return spare;
+                  }
+                })
+            .getInstance(Car.class),
+        true,
+        true);
+  }public class GuiceTck extends TestCase {
+
+  public static Test suite() {
+    return Tck.testsFor(
+        Guice.createInjector(
+                new AbstractModule() {
+                  @Override
+                  protected void configure() {
+                    bind(Car.class).to(Convertible.class);
+                    bind(Seat.class).annotatedWith(Drivers.class).to(DriversSeat.class);
+                    bind(Engine.class).to(V8Engine.class);
+                    bind(Cupholder.class);
+                    bind(Tire.class);
+                    bind(FuelTank.class);
+                    requestStaticInjection(Convertible.class, SpareTire.class);
+                  }
+
+                  @Provides
+                  @Named("spare")
+                  Tire provideSpareTire(SpareTire spare) {
+                    return spare;
+                  }
+                })
+            .getInstance(Car.class),
+        true,
+        true);
+  }
+public class GuiceTck extends TestCase {
+
+  public static Test suite() {
+    return Tck.testsFor(
+        Guice.createInjector(
+                new AbstractModule() {
+                  @Override
+                  protected void configure() {
+                    bind(Car.class).to(Convertible.class);
+                    bind(Seat.class).annotatedWith(Drivers.class).to(DriversSeat.class);
+                    bind(Engine.class).to(V8Engine.class);
+                    bind(Cupholder.class);
+                    bind(Tire.class);
+                    bind(FuelTank.class);
+                    requestStaticInjection(Convertible.class, SpareTire.class);
+                  }
+
+                  @Provides
+                  @Named("spare")
+                  Tire provideSpareTire(SpareTire spare) {
+                    return spare;
+                  }
+                })
+            .getInstance(Car.class),
+        true,
+        true);
+  }public class GuiceTck extends TestCase {
+
+  public static Test suite() {
+    return Tck.testsFor(
+        Guice.createInjector(
+                new AbstractModule() {
+                  @Override
+                  protected void configure() {
+                    bind(Car.class).to(Convertible.class);
+                    bind(Seat.class).annotatedWith(Drivers.class).to(DriversSeat.class);
+                    bind(Engine.class).to(V8Engine.class);
+                    bind(Cupholder.class);
+                    bind(Tire.class);
+                    bind(FuelTank.class);
+                    requestStaticInjection(Convertible.class, SpareTire.class);
+                  }
+
+                  @Provides
+                  @Named("spare")
+                  Tire provideSpareTire(SpareTire spare) {
+                    return spare;
+                  }
+                })
+            .getInstance(Car.class),
+        true,
+        true);
+  }public class GuiceTck extends TestCase {
+
+  public static Test suite() {
+    return Tck.testsFor(
+        Guice.createInjector(
+                new AbstractModule() {
+                  @Override
+                  protected void configure() {
+                    bind(Car.class).to(Convertible.class);
+                    bind(Seat.class).annotatedWith(Drivers.class).to(DriversSeat.class);
+                    bind(Engine.class).to(V8Engine.class);
+                    bind(Cupholder.class);
+                    bind(Tire.class);
+                    bind(FuelTank.class);
+                    requestStaticInjection(Convertible.class, SpareTire.class);
+                  }
+
+                  @Provides
+                  @Named("spare")
+                  Tire provideSpareTire(SpareTire spare) {
+                    return spare;
+                  }
+                })
+            .getInstance(Car.class),
+        true,
+        true);
+  }public class GuiceTck extends TestCase {
+
+  public static Test suite() {
+    return Tck.testsFor(
+        Guice.createInjector(
+                new AbstractModule() {
+                  @Override
+                  protected void configure() {
+                    bind(Car.class).to(Convertible.class);
+                    bind(Seat.class).annotatedWith(Drivers.class).to(DriversSeat.class);
+                    bind(Engine.class).to(V8Engine.class);
+                    bind(Cupholder.class);
+                    bind(Tire.class);
+                    bind(FuelTank.class);
+                    requestStaticInjection(Convertible.class, SpareTire.class);
+                  }
+
+                  @Provides
+                  @Named("spare")
+                  Tire provideSpareTire(SpareTire spare) {
+                    return spare;
+                  }
+                })
+            .getInstance(Car.class),
+        true,
+        true);
+  }public class GuiceTck extends TestCase {
 
   public static Test suite() {
     return Tck.testsFor(
