@@ -80,7 +80,13 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-
+private boolean cleanup(BindingImpl<?> binding, Set<Key<?>> encountered) { boolean bindingFailed = false;
+    Set<Dependency<?>> deps = getInternalDependencies(binding); for (Dependency<?> dep : deps) { Key<?> depKey = dep.getKey();
+      InjectionPoint ip = dep.getInjectionPoint(); if (encountered.add(depKey)) { BindingImpl<?> depBinding = jitBindingData.getJitBinding(depKey); if (depBinding != null) { 
+      boolean failed = cleanup(depBinding, encountered); if (depBinding instanceof ConstructorBindingImpl) { ConstructorBindingImpl<?> ctorBinding = (ConstructorBindingImpl<?>) depBinding;
+      ip = ctorBinding.getInternalConstructor(); if (!ctorBinding.isInitialized()) { failed = true; } }
+      if (failed) { removeFailedJitBinding(depBinding, ip); bindingFailed = true; }} else if (bindingData.getExplicitBinding(depKey) == null) { bindingFailed = true; }}}
+    return bindingFailed;}
 /**
  * Utilities for testing the Multibinder and MapBinder extension SPI.
  *
