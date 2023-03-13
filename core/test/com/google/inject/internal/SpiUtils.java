@@ -94,6 +94,56 @@ public class SpiUtils {
     MODULE,
     BOTH
   }
+  FactoryProvider2(
+      Key<F> factoryKey, BindingCollector collector, MethodHandles.Lookup userLookups) {
+    this.factoryKey = factoryKey;
+    this.collector = collector;
+
+    TypeLiteral<F> factoryType = factoryKey.getTypeLiteral();
+    Errors errors = new Errors();
+
+    @SuppressWarnings("unchecked") // we imprecisely treat the class literal of T as a Class<T>
+    Class<F> factoryRawType = (Class<F>) (Class<?>) factoryType.getRawType();
+
+    try {
+      if (!factoryRawType.isInterface()) {
+        throw errors.addMessage("%s must be an interface.", factoryRawType).toException();
+      }
+
+      Multimap<String, Method> defaultMethods = HashMultimap.create();
+      Multimap<String, Method> otherMethods = HashMultimap.create();
+      ImmutableMap.Builder<Method, AssistData> assistDataBuilder = ImmutableMap.builder();
+      // TODO: also grab methods from superinterfaces
+      for (Method method : factoryRawType.getMethods()) {
+        // Skip static methods
+        if (Modifier.isStatic(method.getModifiers())) {
+          continue;
+        }
+
+        // Skip default methods that java8 may have created.
+        if (isDefault(method) && (method.isBridge() || method.isSynthetic())) {
+          // Even synthetic default methods need the return type validation...
+          // unavoidable consequence of javac8. :-(
+          validateFactoryReturnType(errors, method.getReturnType(), factoryRawType);
+          defaultMethods.put(method.getName(), method);
+          continue;
+        }
+        otherMethods.put(method.getName(), method);
+
+        TypeLiteral<?> returnTypeLiteral = factoryType.getReturnType(method);
+        Key<?> returnType;
+        try {
+          returnType =
+              Annotations.getKey(returnTypeLiteral, method, method.getAnnotations(), errors);
+        } catch (ConfigurationException ce) {
+          // If this was an error due to returnTypeLiteral not being specified, rephrase
+          // it as our factory not being specified, so it makes more sense to users.
+          if (isTypeNotSpecified(returnTypeLiteral, ce)) {
+            throw errors.keyNotFullySpecified(TypeLiteral.get(factoryRawType)).toException();
+          } else {
+            throw ce;
+          }
+        }
 
   /**
    * Asserts that MapBinderBinding visitors for work correctly.
