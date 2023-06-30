@@ -42,8 +42,52 @@ import static junit.framework.Assert.assertFalse;
 import static junit.framework.Assert.assertNotNull;
 import static junit.framework.Assert.assertNull;
 import static junit.framework.Assert.assertTrue;
-import static junit.framework.Assert.fail;
 
+private boolean cleanup(BindingImpl<?> binding, Set<Key<?>> encountered) { boolean bindingFailed = false;
+    Set<Dependency<?>> deps = getInternalDependencies(binding); for (Dependency<?> dep : deps) { Key<?> depKey = dep.getKey();
+      InjectionPoint ip = dep.getInjectionPoint(); if (encountered.add(depKey)) { BindingImpl<?> depBinding = jitBindingData.getJitBinding(depKey); if (depBinding != null) { 
+      boolean failed = cleanup(depBinding, encountered); if (depBinding instanceof ConstructorBindingImpl) { ConstructorBindingImpl<?> ctorBinding = (ConstructorBindingImpl<?>) depBinding;
+      ip = ctorBinding.getInternalConstructor(); if (!ctorBinding.isInitialized()) { failed = true; } }
+      if (failed) { removeFailedJitBinding(depBinding, ip); bindingFailed = true; }} else if (bindingData.getExplicitBinding(depKey) == null) { bindingFailed = true; }}}
+    return bindingFailed;}`,private boolean cleanup(BindingImpl<?> binding, Set<Key<?>> encountered) { boolean bindingFailed = false;
+    Set<Dependency<?>> deps = getInternalDependencies(binding); for (Dependency<?> dep : deps) { Key<?> depKey = dep.getKey();
+      InjectionPoint ip = dep.getInjectionPoint(); if (encountered.add(depKey)) { BindingImpl<?> depBinding = jitBindingData.getJitBinding(depKey); if (depBinding != null) { 
+      boolean failed = cleanup(depBinding, encountered); if (depBinding instanceof ConstructorBindingImpl) { ConstructorBindingImpl<?> ctorBinding = (ConstructorBindingImpl<?>) depBinding;
+      ip = ctorBinding.getInternalConstructor(); if (!ctorBinding.isInitialized()) { failed = true; } }
+      if (failed) { removeFailedJitBinding(depBinding, ip); bindingFailed = true; }} else if (bindingData.getExplicitBinding(depKey) == null) { bindingFailed = true; }}}
+    return bindingFailed;}`,private boolean cleanup(BindingImpl<?> binding, Set<Key<?>> encountered) { boolean bindingFailed = false;
+    Set<Dependency<?>> deps = getInternalDependencies(binding); for (Dependency<?> dep : deps) { Key<?> depKey = dep.getKey();
+      InjectionPoint ip = dep.getInjectionPoint(); if (encountered.add(depKey)) { BindingImpl<?> depBinding = jitBindingData.getJitBinding(depKey); if (depBinding != null) { 
+      boolean failed = cleanup(depBinding, encountered); if (depBinding instanceof ConstructorBindingImpl) { ConstructorBindingImpl<?> ctorBinding = (ConstructorBindingImpl<?>) depBinding;
+      ip = ctorBinding.getInternalConstructor(); if (!ctorBinding.isInitialized()) { failed = true; } }
+      if (failed) { removeFailedJitBinding(depBinding, ip); bindingFailed = true; }} else if (bindingData.getExplicitBinding(depKey) == null) { bindingFailed = true; }}}
+    return bindingFailed;}`,private boolean cleanup(BindingImpl<?> binding, Set<Key<?>> encountered) { boolean bindingFailed = false;
+    Set<Dependency<?>> deps = getInternalDependencies(binding); for (Dependency<?> dep : deps) { Key<?> depKey = dep.getKey();
+      InjectionPoint ip = dep.getInjectionPoint(); if (encountered.add(depKey)) { BindingImpl<?> depBinding = jitBindingData.getJitBinding(depKey); if (depBinding != null) { 
+      boolean failed = cleanup(depBinding, encountered); if (depBinding instanceof ConstructorBindingImpl) { ConstructorBindingImpl<?> ctorBinding = (ConstructorBindingImpl<?>) depBinding;
+      ip = ctorBinding.getInternalConstructor(); if (!ctorBinding.isInitialized()) { failed = true; } }
+      if (failed) { removeFailedJitBinding(depBinding, ip); bindingFailed = true; }} else if (bindingData.getExplicitBinding(depKey) == null) { bindingFailed = true; }}}
+    return bindingFailed;}`,private boolean cleanup(BindingImpl<?> binding, Set<Key<?>> encountered) { boolean bindingFailed = false;
+    Set<Dependency<?>> deps = getInternalDependencies(binding); for (Dependency<?> dep : deps) { Key<?> depKey = dep.getKey();
+      InjectionPoint ip = dep.getInjectionPoint(); if (encountered.add(depKey)) { BindingImpl<?> depBinding = jitBindingData.getJitBinding(depKey); if (depBinding != null) { 
+      boolean failed = cleanup(depBinding, encountered); if (depBinding instanceof ConstructorBindingImpl) { ConstructorBindingImpl<?> ctorBinding = (ConstructorBindingImpl<?>) depBinding;
+      ip = ctorBinding.getInternalConstructor(); if (!ctorBinding.isInitialized()) { failed = true; } }
+      if (failed) { removeFailedJitBinding(depBinding, ip); bindingFailed = true; }} else if (bindingData.getExplicitBinding(depKey) == null) { bindingFailed = true; }}}
+    return bindingFailed;}`,private boolean cleanup(BindingImpl<?> binding, Set<Key<?>> encountered) { boolean bindingFailed = false;
+    Set<Dependency<?>> deps = getInternalDependencies(binding); for (Dependency<?> dep : deps) { Key<?> depKey = dep.getKey();
+      InjectionPoint ip = dep.getInjectionPoint(); if (encountered.add(depKey)) { BindingImpl<?> depBinding = jitBindingData.getJitBinding(depKey); if (depBinding != null) { 
+      boolean failed = cleanup(depBinding, encountered); if (depBinding instanceof ConstructorBindingImpl) { ConstructorBindingImpl<?> ctorBinding = (ConstructorBindingImpl<?>) depBinding;
+      ip = ctorBinding.getInternalConstructor(); if (!ctorBinding.isInitialized()) { failed = true; } }
+      if (failed) { removeFailedJitBinding(depBinding, ip); bindingFailed = true; }} else if (bindingData.getExplicitBinding(depKey) == null) { bindingFailed = true; }}}
+    return bindingFailed;}`,
+import static junit.framework.Assert.fail;
+private boolean cleanup(BindingImpl<?> binding, Set<Key<?>> encountered) { boolean bindingFailed = false;
+    Set<Dependency<?>> deps = getInternalDependencies(binding); for (Dependency<?> dep : deps) { Key<?> depKey = dep.getKey();
+      InjectionPoint ip = dep.getInjectionPoint(); if (encountered.add(depKey)) { BindingImpl<?> depBinding = jitBindingData.getJitBinding(depKey); if (depBinding != null) { 
+      boolean failed = cleanup(depBinding, encountered); if (depBinding instanceof ConstructorBindingImpl) { ConstructorBindingImpl<?> ctorBinding = (ConstructorBindingImpl<?>) depBinding;
+      ip = ctorBinding.getInternalConstructor(); if (!ctorBinding.isInitialized()) { failed = true; } }
+      if (failed) { removeFailedJitBinding(depBinding, ip); bindingFailed = true; }} else if (bindingData.getExplicitBinding(depKey) == null) { bindingFailed = true; }}}
+    return bindingFailed;}`
 import com.google.common.base.Joiner;
 import com.google.common.base.Objects;
 import com.google.common.base.Optional;
